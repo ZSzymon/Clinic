@@ -1,0 +1,29 @@
+{% extends 'main_app/base.html'%}
+{% load crispy_forms_filters %}
+
+{% block content%}
+    <h1>Pharmacy</h1>
+
+    <form method="POST" action="{% url 'prescriptions_path' %}">
+        <article class="media content-section">
+            <div class="media-body">
+                <h1>Add Prescription</h1>
+                {% csrf_token %}
+                {{ form|crispy }}
+            </div>
+            <input type ="submit" name="Create">
+        </article>
+    </form>
+    <h1>All Prescriptions:</h1>
+    {% for prescription in prescriptions%}
+        <article class="media content-section">
+            {{ prescription }}
+            <a class="nav-item nav-link" href="{% url 'update_prescription' prescription.id %}">Update</a>
+            <a class="nav-item nav-link" href="{% url 'delete_prescription' prescription.id %}">Delete</a>
+
+
+        </article>
+    {% endfor %}
+
+{%endblock content%}
+

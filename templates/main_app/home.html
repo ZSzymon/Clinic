@@ -1,0 +1,32 @@
+{% extends 'main_app/base.html' %}
+    {% block content %}
+        <h1>Home Page</h1>
+
+            <article class="media content-section">
+              <div class="media-body">
+                <h2><div class="article-title" >{{ 'We are open:' }}</div></h2>
+                  <ul>
+                   <h3><p class="article-content">{{ 'Mondey from 8:00 to 15:00' }}</p></h3>
+                   <h3><p class="article-content">{{ 'Tuesday from 8:00 to 15:00' }}</p></h3>
+                   <h3><p class="article-content">{{ 'Wednesday from 8:00 to 15:00' }}</p></h3>
+                   <h3><p class="article-content">{{ 'Thursday from 8:00 to 15:00' }}</p></h3>
+                   <h3><p class="article-content">{{ 'Friday from 8:00 to 15:00' }}</p></h3>
+                  </ul>
+
+              </div>
+            </article>
+
+        <h2>News!</h2>
+        {% for a in articles %}
+            <article class="media content-section">
+              <div class="media-body">
+                <div class="article-metadata">
+                  {{ a.author }}
+                </div>
+                <h2><div class="article-title" >{{ a.headline }}</div></h2>
+                <p class="article-content">{{ a.content }}</p>
+              </div>
+            </article>
+        {% endfor %}
+
+    {% endblock content %}

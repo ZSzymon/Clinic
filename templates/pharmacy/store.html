@@ -1,0 +1,50 @@
+{% extends 'pharmacy/store_base.html' %}
+{% load crispy_forms_filters %}
+
+{% block content%}
+    <h1>Pharmacy Store</h1>
+    {% if user.is_admin or user.is_staff  %}
+        <form method="POST" action="{% url 'drugs_path' %}">
+            <article class="media content-section">
+                <div class="media-body">
+                    <h1>Add Drug</h1>
+                    {% csrf_token %}
+                    {{ form|crispy }}
+                    <input type ="submit" name="Create">
+                </div>
+
+            </article>
+        </form>
+    {% endif %}
+
+    <h1>Drugs</h1>
+    {% for drug in drugs%}
+        <article class="media content-section">
+            {{ drug }}
+            <a href="{% url 'cart_add' drug.id %}"> Add To Cart</a>
+
+        </article>
+    {% endfor %}
+
+{%endblock content%}
+
+{% block cart_content %}
+    {% for key,value in request.session.cart.items %}
+        <li class="list-group-item list-group-item-light">
+            Name: {{ value.name }} : {{ value.quantity }} pcs
+        <a href="{% url 'item_increment' value.product_id %}">+</a>
+
+        {% if value.quantity == 1 %}
+            <a href="{% url 'item_clear' value.product_id %}">-</a>
+        {% else %}
+            <a href="{% url 'item_decrement' value.product_id %}">-</a>
+        {% endif %}
+
+        </li>
+    {% endfor %}
+     <button type="submit" class="button button1" onclick="location.href='{% url 'cart' %}'">
+         To Cart
+     </button>
+
+{% endblock %}
+

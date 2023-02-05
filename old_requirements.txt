@@ -1,0 +1,22 @@
+Django==3.1.4
+asgiref==3.3.1
+atomicwrites==1.4.0
+attrs==20.3.0
+colorama==0.4.4
+coverage==5.3.1
+django-crispy-forms==1.10.0
+importlib-metadata==3.3.0
+iniconfig==1.1.1
+packaging==20.8
+pip	==20.3.3
+pluggy==0.13.1
+py ==1.10.0
+pyparsing==2.4.7
+pytest==6.2.1
+pytz==2020.5
+setuptools==51.1.0
+sqlparse==0.4.1
+toml==0.10.2
+typing-extensions==3.7.4.3
+zipp == 3.4.0
+django-shopping-cart

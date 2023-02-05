@@ -1,0 +1,13 @@
+{% extends 'main_app/base.html'%}
+
+{% block content%}
+    <h1>Are you sure to delete prescription:</h1>
+    {{ prescription }}
+    <a class="nav-item nav-link" href="{% url 'prescriptions_path' %}">Cancel</a>
+    <form method="POST" action="">
+    {% csrf_token %}
+    <input type="submit" name = "Confirm">
+    </form>
+
+{%endblock content%}
+

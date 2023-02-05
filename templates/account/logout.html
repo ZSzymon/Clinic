@@ -1,0 +1,18 @@
+{% extends 'main_app/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content%}
+    <h2>You have been log out :) </h2>
+
+    <div class = "border-top pt-3">
+        <small class = "text-muted">
+            <fieldset class=" form-group">
+                If you want to log in again just click button !
+            </fieldset>
+            <a href="{% url 'account-login' %}" class="btn btn-primary">Login</a>
+
+        </small>
+    </div>
+
+{%endblock content%}
+

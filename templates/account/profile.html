@@ -1,0 +1,50 @@
+{% extends 'main_app/base.html'%}
+{% load crispy_forms_tags %}
+
+{% block content%}
+
+    <article class="media content-section">
+      <div class="media-body">
+        <h2>
+            <p class="article-title" >{{'Your Notebook'}}</p>
+        </h2>
+        <h4 class="article-content">
+            <a href="{% url 'account-notebook'  %}">To my notes</a>
+        </h4>
+      </div>
+    </article>
+
+    <div class="col-md-4">
+      <div class="content-section">
+        <h3>Your profile information:</h3>
+          <ul class="list-group">
+            <li class="list-group-item ">Name:{{ user.first_name }} {{ user.last_name }} </li>
+            <li class="list-group-item ">Adress:{{ user.adress }}</li>
+            <li class="list-group-item ">Account Type:{{ user.type }}</li>
+            <li class="list-group-item ">Email: {{ user.email }}</li>
+          </ul>
+      </div>
+    </div>
+
+
+    {% if any_appoitments %}
+        {% for a in appointments %}
+            <article class="media content-section">
+                    <div class="media-body">
+                        <div class="article-metadata">
+                            <p class="article-content">Start date: {{ a.appointment_start_time }}</p>
+                            <p class="article-content">End date:{{ a.appointment_end_time }}</p>
+                            {% if is_patient %}
+                                <p class="article-content">Doctor:{{ a.doctor }}</p>
+                            {% endif %}
+                            {% if is_doctor %}
+                                <p class="article-content ">Patient:{{ a.patient }}</p>
+                            {% endif %}
+                        </div>
+                    </div>
+            </article>
+        {% endfor %}
+    {% endif %}
+
+{%endblock content%}
+

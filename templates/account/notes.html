@@ -1,0 +1,28 @@
+{% extends 'main_app/base.html' %}
+{% load crispy_forms_filters %}
+
+{% block content%}
+    <h1>Add new Note</h1>
+    <div class = "content-section">
+        <form method = "POST">
+            {% csrf_token %}
+            <fieldset class=" form-group">
+                {{ form|crispy }}
+            </fieldset>
+            <div class ="form-group">
+                <button class = "btn btn-outline-info" type = "submit">Create</button>
+            </div>
+        </form>
+    </div>
+
+    <h1>Notes:</h1>
+    {% for note in notes %}
+        <article class="media content-section">
+            {{ note }}
+            <a class="nav-item nav-link" href="{% url 'account-update_note' note.id %}">Update</a>
+            <a class="nav-item nav-link" href="{% url 'account-delete_note' note.id %}">Delete</a>
+        </article>
+    {% endfor %}
+
+{%endblock content%}
+

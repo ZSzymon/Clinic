@@ -1,0 +1,12 @@
+{% extends 'main_app/base.html'%}
+{% load crispy_forms_filters %}
+
+{% block content%}
+    <h1>Update prescription site</h1>
+    <form method="POST" action="{% url 'update_prescription' prescription.id %}">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <input type="submit" name ="Update Task">
+    </form>
+{%endblock content%}
+

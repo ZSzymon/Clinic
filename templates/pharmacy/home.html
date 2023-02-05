@@ -1,0 +1,33 @@
+{% extends 'main_app/base.html'%}
+
+{% block content%}
+    <h1>Pharmacy home</h1>
+
+    <div class="content-section">
+        {% if user.is_admin %}
+            <a class="nav-item nav-link" href="{% url 'prescriptions_path' %}">Manage prescriptions</a>
+            <a class="nav-item nav-link" href="{% url 'drugs_path' %}">Manage drugs</a>
+        {% endif %}
+
+        <button type="submit" class="button button1 btn btn-primary" onclick="location.href='{% url 'store' %}'">
+            To Store
+        </button>
+
+    </div>
+
+    {% for prescription in prescriptions %}
+        <article class="media content-section">
+            <div class="media-body">
+              <div class="article-metadata">
+                <small class="text-muted">{{ prescription.date }}</small>
+              </div>
+              <p class="article-content">{{ prescription.drug.name }}</p>
+              <p class="article-content">{{ 'Quantity: ' }}{{ prescription.quantity }}</p>
+            </div>
+        </article>
+    {% endfor %}
+
+
+
+{%endblock content%}
+
