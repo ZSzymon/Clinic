@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
-from django.utils import timezone
-import os, sys
-import pytz
+import os
+import sys
 
+import pytz
+from django.utils import timezone
 
 PROJECT_NAME = "Clinic"
 PROJECT_PATH = "/Clinic"
@@ -13,11 +14,13 @@ import django
 
 django.setup()
 
-from django.utils.datetime_safe import datetime
-from main_app.models import Patient, Appointment, Doctor
-from django.utils.timezone import now
 from datetime import datetime
+
+from django.utils.datetime_safe import datetime
+from django.utils.timezone import now
 from pytz import UTC
+
+from main_app.models import Appointment, Doctor, Patient
 
 
 def insert_doctors():

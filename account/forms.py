@@ -1,7 +1,8 @@
 from django import forms
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
-from .models import Account, Note
 from django.utils.translation import gettext as _
+
+from .models import Account, Note
 
 
 class UserAdminCreationForm(forms.ModelForm):
@@ -9,13 +10,21 @@ class UserAdminCreationForm(forms.ModelForm):
     A form for creating new users. Includes all the required
     fields, plus a repeated password.
     """
-    password1 = forms.CharField(label='Password', widget=forms.PasswordInput)
-    password2 = forms.CharField(label='Password confirmation', widget=forms.PasswordInput)
+
+    password1 = forms.CharField(label="Password", widget=forms.PasswordInput)
+    password2 = forms.CharField(
+        label="Password confirmation", widget=forms.PasswordInput
+    )
     type = forms.ChoiceField(choices=Account.Types.choices)
 
     class Meta:
         model = Account
-        fields = ('email', 'first_name', 'last_name', 'adress',)
+        fields = (
+            "email",
+            "first_name",
+            "last_name",
+            "adress",
+        )
 
     def clean_password2(self):
         # Check that the two password entries match
@@ -29,7 +38,7 @@ class UserAdminCreationForm(forms.ModelForm):
         # Save the provided password in hashed format
         user = super(UserAdminCreationForm, self).save(commit=False)
         user.set_password(self.cleaned_data["password1"])
-        user.type = self.cleaned_data.get('type', None)
+        user.type = self.cleaned_data.get("type", None)
         if commit:
             user.save()
 
@@ -42,14 +51,23 @@ class UserAdminChangeForm(forms.ModelForm):
     password hash display field.
 
     """
+
     password = ReadOnlyPasswordHashField()
 
     class Meta:
         model = Account
         fields = (
-            'email', 'password', 'is_active', 'is_admin', 'is_staff', 'is_superuser', 'first_name', 'last_name',
-            'adress',
-            'type')
+            "email",
+            "password",
+            "is_active",
+            "is_admin",
+            "is_staff",
+            "is_superuser",
+            "first_name",
+            "last_name",
+            "adress",
+            "type",
+        )
 
     def clean_password(self):
         # Regardless of what the user provides, return the initial value.
@@ -59,8 +77,8 @@ class UserAdminChangeForm(forms.ModelForm):
 
 
 class LoginForm(forms.Form):
-    email = forms.EmailField(label=_('Email'), widget=forms.TextInput)
-    password = forms.CharField(label=_('Password'), widget=forms.PasswordInput)
+    email = forms.EmailField(label=_("Email"), widget=forms.TextInput)
+    password = forms.CharField(label=_("Password"), widget=forms.PasswordInput)
     pass
 
 
@@ -69,12 +87,15 @@ class UserCreationForm(forms.ModelForm):
     A form for creating new users. Includes all the required
     fields, plus a repeated password.
     """
-    password1 = forms.CharField(label='Password', widget=forms.PasswordInput)
-    password2 = forms.CharField(label='Password confirmation', widget=forms.PasswordInput)
+
+    password1 = forms.CharField(label="Password", widget=forms.PasswordInput)
+    password2 = forms.CharField(
+        label="Password confirmation", widget=forms.PasswordInput
+    )
 
     class Meta:
         model = Account
-        fields = ('email', 'first_name', 'last_name', 'adress')
+        fields = ("email", "first_name", "last_name", "adress")
 
     def clean_password2(self):
         # Check that the two password entries match
@@ -97,5 +118,7 @@ class UserCreationForm(forms.ModelForm):
 class NoteForm(forms.ModelForm):
     class Meta:
         model = Note
-        fields = ('note', 'is_done',)
-
+        fields = (
+            "note",
+            "is_done",
+        )

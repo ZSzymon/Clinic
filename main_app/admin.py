@@ -1,9 +1,10 @@
-
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
+
 from account.models import *
-from .models import Patient, Appointment, Doctor,Article
 from pharmacy.models import *
+
+from .models import Appointment, Article, Doctor, Patient
 
 admin.site.register(Patient)
 admin.site.register(Doctor)

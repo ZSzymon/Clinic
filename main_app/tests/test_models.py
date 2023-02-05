@@ -1,11 +1,10 @@
-
 #
-#from django.test import TestCase
-#from main_app.models import *
-#from django.utils.timezone import now
+# from django.test import TestCase
+# from main_app.models import *
+# from django.utils.timezone import now
 #
 #
-#class test_models(TestCase):
+# class test_models(TestCase):
 #
 #    def test_test(self):
 #        result = test.objects.filter(numer=3).delete()
